@@ -1,0 +1,7 @@
+# Ignorar arquivos binários e arquivos relacionados a configurações locais
+infod/target/
+infod/.idea/
+infod/.idea/workspace.xml
+
+# Ignorar o arquivo com credenciais
+infod/comandos-docker.txt
