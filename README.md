@@ -80,3 +80,31 @@ http://localhost:8080/swagger-ui.html
 Acesse o Monitoramento (Actuator):
 
 http://localhost:9090/actuator (Nota: Porta 9090)
+
+
+📍 Principais Endpoints
+Autores
+POST /autores/create (Permissão: GERENTE)
+
+GET /autores/findAll (Permissão: OPERADOR+)
+
+Livros
+POST /livros/create (Permissão: OPERADOR+)
+
+GET /livros (Público - Pesquisa)
+
+Usuários e Auth
+POST /usuarios (Público - Cadastro)
+
+GET /login (Público - Página de Login)
+
+🤝 Contribuição
+Faça um Fork do projeto
+
+Crie uma Branch para sua Feature (git checkout -b feature/MinhaFeature)
+
+Faça o Commit (git commit -m 'Adicionando funcionalidade X')
+
+Faça o Push (git push origin feature/MinhaFeature)
+
+Abra um Pull Request
