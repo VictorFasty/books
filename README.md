@@ -52,50 +52,8 @@ erDiagram
         decimal preco
     }
 
-🔧 Como Rodar
-Pré-requisitos
-Java 17+ e Maven.
+🔧 Como RodarPré-requisitosJava 17+ e Maven.PostgreSQL rodando.Variáveis de Ambiente (Obrigatório)O projeto usa o profile production. Configure estas variáveis no seu sistema/IDE:VariávelDescriçãoExemploDATASOURCE_URLURL JDBC do Postgresjdbc:postgresql://localhost:5432/library_dbDATASOURCE_USERNAMEUsuário do BancopostgresDATASOURCE_PASSWORDSenha do Bancosua_senhaGOOGLE_CLIENT_IDClient ID (Google Cloud)123...apps.googleusercontent.comGOOGLE_CLIENT_SECRETClient Secret (Google)GOCSPX-...
 
-PostgreSQL rodando.
-
-Variáveis de Ambiente (Obrigatório)
-O projeto usa o profile production. Configure estas variáveis no seu sistema/IDE:
-Variável,Descrição,Exemplo
-DATASOURCE_URL,URL JDBC do Postgres,jdbc:postgresql://localhost:5432/library_db
-DATASOURCE_USERNAME,Usuário do Banco,postgres
-DATASOURCE_PASSWORD,Senha do Banco,sua_senha
-GOOGLE_CLIENT_ID,Client ID (Google Cloud),123...apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET,Client Secret (Google),GOCSPX-...
-
-Execução
-Clone o repositório e entre na pasta: git clone [https://github.com/seu-usuario/library-api.git](https://github.com/seu-usuario/library-api.git)
-
-Execute via Maven:
-mvn spring-boot:run
-
-Acesse a Documentação (Swagger):
-
-http://localhost:8080/swagger-ui.html
-
-Acesse o Monitoramento (Actuator):
-
-http://localhost:9090/actuator (Nota: Porta 9090)
-
-Recurso,Método,Endpoint,Permissão
-Autores,POST,/autores/create,GERENTE
-,GET,/autores/findAll,OPERADOR+
-Livros,POST,/livros/create,OPERADOR+
-,GET,/livros,Pesquisa (Público/Auth)
-Usuários,POST,/usuarios,Público
-Auth,GET,/login,Público
-
-Contribuição
-Faça um Fork do projeto
-
-Crie uma Branch para sua Feature (git checkout -b feature/MinhaFeature)
-
-Faça o Commit (git commit -m 'Adicionando funcionalidade X')
-
-Faça o Push (git push origin feature/MinhaFeature)
-
-Abra um Pull Request
+ExecuçãoClone o repositório e entre na pasta:Bashgit clone [https://github.com/seu-usuario/library-api.git](https://github.com/seu-usuario/library-api.git)
+Execute via Maven:Bashmvn spring-boot:run
+Acesse a Documentação (Swagger):http://localhost:8080/swagger-ui.htmlAcesse o Monitoramento (Actuator):http://localhost:9090/actuator (Nota: Porta 9090)📍 Principais EndpointsRecursoMétodoEndpointPermissãoAutoresPOST/autores/createGERENTEGET/autores/findAllOPERADOR+LivrosPOST/livros/createOPERADOR+GET/livrosPesquisa (Público/Auth)UsuáriosPOST/usuariosPúblicoAuthGET/loginPúblico🤝 ContribuiçãoFaça um Fork do projetoCrie uma Branch para sua Feature (git checkout -b feature/MinhaFeature)Faça o Commit (git commit -m 'Adicionando funcionalidade X')Faça o Push (git push origin feature/MinhaFeature)Abra um Pull Request
