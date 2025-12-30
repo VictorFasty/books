@@ -28,29 +28,12 @@ O sistema utiliza controle de permissões baseado em Roles (`varchar[]` no banco
 * **Autenticação:** Login via formulário ou Google OAuth2.
 
 ## 🗂️ Estrutura de Dados
-
-```mermaid
-erDiagram
-    AUTOR ||--|{ LIVRO : escreveu
-    USUARIO {
-        uuid id
-        string login
-        string email
-        string[] roles
-    }
-    AUTOR {
-        uuid id
-        string nome
-        string nacionalidade
-        date nascimento
-    }
-    LIVRO {
-        uuid id
-        string titulo
-        string isbn
-        enum genero
-        decimal preco
-    }
+Variável,Descrição,Exemplo
+DATASOURCE_URL,URL JDBC do Postgres,jdbc:postgresql://localhost:5432/library_db
+DATASOURCE_USERNAME,Usuário do Banco,postgres
+DATASOURCE_PASSWORD,Senha do Banco,sua_senha
+GOOGLE_CLIENT_ID,Client ID (Google Cloud),123...apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET,Client Secret (Google),GOCSPX-...
 
 🔧 Como RodarPré-requisitosJava 17+ e Maven.PostgreSQL rodando.Variáveis de Ambiente (Obrigatório)O projeto usa o profile production. Configure estas variáveis no seu sistema/IDE:VariávelDescriçãoExemploDATASOURCE_URLURL JDBC do Postgresjdbc:postgresql://localhost:5432/library_dbDATASOURCE_USERNAMEUsuário do BancopostgresDATASOURCE_PASSWORDSenha do Bancosua_senhaGOOGLE_CLIENT_IDClient ID (Google Cloud)123...apps.googleusercontent.comGOOGLE_CLIENT_SECRETClient Secret (Google)GOCSPX-...
 
