@@ -29,58 +29,50 @@ O sistema utiliza controle de permissões baseado em Roles (`varchar[]` no banco
 
 ## 🗂️ Estrutura de Dados
 
-```mermaid
-erDiagram
-    AUTOR ||--|{ LIVRO : escreveu
-    USUARIO {
-        uuid id
-        string login
-        string email
-        string[] roles
-    }
-    AUTOR {
-        uuid id
-        string nome
-        string nacionalidade
-        date nascimento
-    }
-    LIVRO {
-        uuid id
-        string titulo
-        string isbn
-        enum genero
-        decimal preco
-    }
-🔧 Como Rodar
-Pré-requisitos
-Java 17+ e Maven.
+O sistema organiza os dados nas seguintes entidades principais:
 
-PostgreSQL rodando.
+* **Relacionamento:** Um **Autor** possui vários **Livros** (1 para N).
+* **USUARIO:**
+    * `id` (UUID)
+    * `login` (String)
+    * `email` (String)
+    * `roles` (Array de Strings - Permissões)
+* **AUTOR:**
+    * `id` (UUID)
+    * `nome` (String)
+    * `nacionalidade` (String)
+    * `nascimento` (Date)
+* **LIVRO:**
+    * `id` (UUID)
+    * `titulo` (String)
+    * `isbn` (String)
+    * `genero` (Enum)
+    * `preco` (Decimal)
 
-Variáveis de Ambiente (Obrigatório)
-O projeto usa o profile production. Você deve configurar as seguintes chaves no seu sistema ou IntelliJ/Eclipse:
+## 🔧 Como Rodar
 
-DATASOURCE_URL: URL de conexão JDBC (Ex: jdbc:postgresql://localhost:5432/library_db)
+### Pré-requisitos
+* Java 17+ e Maven.
+* PostgreSQL rodando.
 
-DATASOURCE_USERNAME: Usuário do banco de dados (Ex: postgres)
+### Variáveis de Ambiente (Obrigatório)
+O projeto usa o profile `production`. Você deve configurar as seguintes chaves no seu sistema ou IntelliJ/Eclipse:
 
-DATASOURCE_PASSWORD: Senha do banco de dados
+* **DATASOURCE_URL**: URL de conexão JDBC (Ex: `jdbc:postgresql://localhost:5432/library_db`)
+* **DATASOURCE_USERNAME**: Usuário do banco de dados (Ex: `postgres`)
+* **DATASOURCE_PASSWORD**: Senha do banco de dados
+* **GOOGLE_CLIENT_ID**: Credencial do Google Cloud
+* **GOOGLE_CLIENT_SECRET**: Segredo do cliente Google
 
-GOOGLE_CLIENT_ID: Credencial do Google Cloud
+### Execução
 
-GOOGLE_CLIENT_SECRET: Segredo do cliente Google
-
-Execução
-Clone o repositório e entre na pasta:
-
-Bash
-
+1. Clone o repositório e entre na pasta:
+```bash
 git clone [https://github.com/seu-usuario/library-api.git](https://github.com/seu-usuario/library-api.git)
+
 Execute via Maven:
-
-Bash
-
 mvn spring-boot:run
+
 Acesse a Documentação (Swagger):
 
 http://localhost:8080/swagger-ui.html
@@ -88,30 +80,3 @@ http://localhost:8080/swagger-ui.html
 Acesse o Monitoramento (Actuator):
 
 http://localhost:9090/actuator (Nota: Porta 9090)
-
-📍 Principais Endpoints
-Autores
-POST /autores/create (Permissão: GERENTE)
-
-GET /autores/findAll (Permissão: OPERADOR+)
-
-Livros
-POST /livros/create (Permissão: OPERADOR+)
-
-GET /livros (Público - Pesquisa)
-
-Usuários e Auth
-POST /usuarios (Público - Cadastro)
-
-GET /login (Público - Página de Login)
-
-🤝 Contribuição
-Faça um Fork do projeto
-
-Crie uma Branch para sua Feature (git checkout -b feature/MinhaFeature)
-
-Faça o Commit (git commit -m 'Adicionando funcionalidade X')
-
-Faça o Push (git push origin feature/MinhaFeature)
-
-Abra um Pull Request
