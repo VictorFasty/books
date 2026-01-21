@@ -16,4 +16,5 @@ public interface BooksRepository extends JpaRepository<BooksModel, UUID> {
             String autor, LocalDate nascimento, String nationality
     );
 
+    boolean existsByAutor(String autor);
 }

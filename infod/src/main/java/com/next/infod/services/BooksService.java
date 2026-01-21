@@ -31,11 +31,12 @@ public class BooksService {
 
     private  final BooksRepository repositorio;
     private final SecurityService securityService;
-    private  final AutorValidator validator;
 
 
     public ResponseEntity<BooksModel> Create(BooksModel books) {
-        validator.validar(books);
+        if (repositorio.existsByAutor(books.getAutor())) {
+            throw new ArquivoDuplicado("Autor Já Cadastrado!");
+        }
         Usuario usuario = securityService.obterUsuarioLogado();
         books.setUsuario(usuario);
         BooksModel savedBook = repositorio.save(books);
@@ -54,7 +55,6 @@ public class BooksService {
 
         var booksModel = books0.get();
         BeanUtils.copyProperties(books, booksModel);
-        validator.validar(booksModel);
         return ResponseEntity.status(HttpStatus.OK).body(repositorio.save(booksModel));
     }
 
