@@ -13,4 +13,6 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
 
     Client findByClientId(String clientId);
     Optional<Client> findByClientIdIgnoreCase(String clientId); // Busca por ClientId com nome diferente
+
+    boolean existsByClientId(String clientId);
 }

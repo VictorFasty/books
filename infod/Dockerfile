@@ -14,7 +14,6 @@ WORKDIR /app
 COPY --from=build ./build/target/*.jar ./libraryapi.jar
 
 EXPOSE 8080
-EXPOSE 9090
 
 
 ENV DATASOURCE_URL=''
@@ -28,4 +27,4 @@ ENV SPRING_PROFILES_ACTIVE='production'
 ENV TZ='America/Sao_Paulo'
 
 
-ENTRYPOINT java -jar libraryapi.jar
+ENTRYPOINT ["java", "-jar", "libraryapi.jar"]

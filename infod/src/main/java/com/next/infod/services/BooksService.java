@@ -1,17 +1,13 @@
 package com.next.infod.services;
 
-import com.next.infod.controller.DTOS.BooksDTO;
 import com.next.infod.exceptions.ArquivoDuplicado;
 import com.next.infod.exceptions.LivroNaoEncontrado;
 import com.next.infod.model.BooksModel;
 import com.next.infod.model.Usuario;
 import com.next.infod.repositories.BooksRepository;
 import com.next.infod.security.SecurityService;
-import com.next.infod.validator.AutorValidator;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -36,6 +32,7 @@ public class BooksService {
     public ResponseEntity<BooksModel> Create(BooksModel books) {
         if (repositorio.existsByAutor(books.getAutor())) {
             throw new ArquivoDuplicado("Autor Já Cadastrado!");
+
         }
         Usuario usuario = securityService.obterUsuarioLogado();
         books.setUsuario(usuario);
@@ -72,6 +69,7 @@ public class BooksService {
         Optional<BooksModel> books0 = repositorio.findById(id);
         if(books0.isEmpty()) {
             throw new LivroNaoEncontrado("Não encontrado");
+
         }
         repositorio.delete(books0.get());
         return ResponseEntity.status(HttpStatus.OK).body("Sucesso!!");

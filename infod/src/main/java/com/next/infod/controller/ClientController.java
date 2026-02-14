@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class ClientController {
             @ApiResponse(responseCode = "422", description = "Erro de validação"),
             @ApiResponse(responseCode = "409", description = "Conflito, quando o cliente ja está cadastrado")
     })
-    public void salvar(@RequestBody ClientDTO DTO) {
+    public void salvar(@RequestBody @Valid ClientDTO DTO) {
         Client client = mapper.toEntity(DTO);
 
         log.info("Registrando novo client: {} com scope: {} ", client.getClientId(), client.getScope());

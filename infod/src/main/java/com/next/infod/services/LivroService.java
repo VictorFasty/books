@@ -10,11 +10,8 @@ import com.next.infod.model.Usuario;
 import com.next.infod.repositories.LivroRepository;
 import com.next.infod.repositories.specs.LivroSpecs;
 import com.next.infod.security.SecurityService;
-import com.next.infod.validator.LivroValidator;
-import lombok.AllArgsConstructor;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,13 +31,10 @@ public class LivroService {
 
     private final LivroRepository repositorio;
 
-    private final LivroValidator validator;
 
     private final SecurityService securityService;
 
     public ResponseEntity<Livro> create(Livro livro) {
-        //Persistindo no repositório
-        validator.validar(livro);
         Usuario usuario = securityService.obterUsuarioLogado();
         livro.setUsuario(usuario);
         Livro savedLivro = repositorio.save(livro);
@@ -71,7 +65,6 @@ public class LivroService {
         }
 
 
-        validator.validar(livro) ;
         repositorio.save(livro);
         return ResponseEntity.ok().build();
     }
@@ -94,12 +87,6 @@ public class LivroService {
             Integer anoPublicacao,
             Integer pagina,
             Integer tamanhaPagina){
-
-//        Specification<Livro> specs = Specification
-//                .where(LivroSpecs.isbnEqual(isbn))
-//                .and(LivroSpecs.tituloLike(titulo))
-//                .and(LivroSpecs.generoEqual(genero))
-//                ;
 
 
         Specification<Livro> specs = Specification.where((root, query, cb) -> cb.conjunction());

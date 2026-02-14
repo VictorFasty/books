@@ -1,10 +1,8 @@
 package com.next.infod.services;
 
-import com.next.infod.controller.mappers.UsuarioMapper;
+import com.next.infod.exceptions.ArquivoDuplicado;
 import com.next.infod.model.Usuario;
 import com.next.infod.repositories.UsuarioRepository;
-import com.next.infod.validator.UsuarioValidator;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,10 +12,14 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
     private final UsuarioRepository repository;
     private final PasswordEncoder encoder;
-    private final UsuarioValidator validator;
 
     public void create(Usuario usuario){
-        validator.validar(usuario);
+        if(repository.existsByEmail(usuario.getEmail())) {
+            throw new ArquivoDuplicado("Email ja existente");
+
+        } else if (repository.existsByLogin(usuario.getLogin())) {
+            throw new ArquivoDuplicado("Login Ja existente");
+        }
         var senha = usuario.getSenha();
         usuario.setSenha(encoder.encode(senha));
         repository.save(usuario);

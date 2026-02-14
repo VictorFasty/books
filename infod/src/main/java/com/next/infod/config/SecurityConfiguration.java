@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .formLogin(configurer ->
                         configurer.loginPage("/login").permitAll()) // Formulário padrão
                 .authorizeHttpRequests(authorizer -> {
-                    authorizer.requestMatchers("/login/**").permitAll();
+                    authorizer.requestMatchers("/login/**").permitAll(); //Liberacao de todos para Login
                     authorizer.requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll();
                     authorizer.anyRequest().authenticated(); // Para toda requisição nessa API tem que estar autenticado
                 })
@@ -54,6 +54,7 @@ public class SecurityConfiguration {
                 .build();
     }
 
+    //URLs que vao ser ignoradas dos padroes de seguranca
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers(
