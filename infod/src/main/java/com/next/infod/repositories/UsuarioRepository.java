@@ -11,13 +11,7 @@ import java.util.UUID;
 public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
     Usuario findByLogin(String login);
 
-    @Query("SELECT u FROM Usuario u WHERE u.login = :login")
-    Optional<Usuario> findingLogin(String login);
-
     Usuario findByEmail(String email);
-
-    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
-    Optional<Usuario> findingEmail(String email);
 
     boolean existsByEmail(String email);
 

@@ -7,27 +7,20 @@ import com.next.infod.controller.DTOS.ErrorResponse;
 import com.next.infod.controller.mappers.BooksMapper;
 import com.next.infod.exceptions.ArquivoDuplicado;
 import com.next.infod.model.BooksModel;
-import com.next.infod.model.Usuario;
-import com.next.infod.security.SecurityService;
 import com.next.infod.services.BooksService;
-import com.next.infod.services.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Repository;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.Authenticator;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -53,6 +46,7 @@ public class BooksController implements GenericController {
             @ApiResponse(responseCode = "422", description = "Erro de validação"),
             @ApiResponse(responseCode = "409", description = "Conflito, quando o autor ja está cadastrado")
     })
+
     public ResponseEntity<?> create(@RequestBody @Valid BooksDTO dto){
         log.info("Cadastrando novo autor : {}", dto.autor());
 
@@ -89,12 +83,10 @@ public class BooksController implements GenericController {
     @GetMapping(value = "/findAll")
     @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
     @Operation(summary = "FindAll", description = "Pesquisa por todos os autores existentes")
-    @ApiResponses({
-
-            @ApiResponse(responseCode = "200", description = "Autores encontrados com sucesso"),
-    })
-    public ResponseEntity<List<BooksModel>> findAll(){
-        return services.FindAll();
+    public ResponseEntity<Page<BooksModel>> findAll(Pageable pageable) {
+        // O Controller não conhece o repositório, apenas o Service
+        Page<BooksModel> page = services.FindAll(pageable);
+        return ResponseEntity.ok(page);
     }
 
 

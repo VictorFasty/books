@@ -8,8 +8,8 @@ import com.next.infod.repositories.BooksRepository;
 import com.next.infod.security.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,8 +57,9 @@ public class BooksService {
 
 
 
-    public ResponseEntity<List<BooksModel>> FindAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(repositorio.findAll());
+
+    public Page<BooksModel> FindAll(Pageable pageable) {
+        return repositorio.findAll(pageable);
     }
 
 
@@ -94,10 +95,6 @@ public class BooksService {
 
 
 
-
-    public Optional<BooksModel> obterPorId(UUID id){
-        return repositorio.findById(id);
-    }
 
 
 
