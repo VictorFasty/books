@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="550ac64e-e906-4c81-89f4-f92e33f05904" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/controller/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/controller/BooksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/BooksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/BooksRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/LivroRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/LivroRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/repositories/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/services/BooksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/services/BooksService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/controller/LivroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/controller/LivroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/services/LivroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/infod/src/main/java/com/next/infod/services/LivroService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

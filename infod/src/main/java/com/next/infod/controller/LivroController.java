@@ -12,7 +12,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -64,12 +66,10 @@ public class LivroController implements GenericController {
     @GetMapping("/findall")
     @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
     @Operation(summary = "FindAll", description = "Pesquisa por todos os livros existentes")
-    @ApiResponses({
-
-            @ApiResponse(responseCode = "200", description = "Livros encontrados com sucesso"),
-    })
-    public ResponseEntity<List<Livro>> findAll() {
-        return service.findAll();
+    public ResponseEntity<Page<Livro>> findAll(Pageable pageable) {
+        // Note que o tipo de retorno mudou para Page<Livro>
+        Page<Livro> page = service.findAll(pageable);
+        return ResponseEntity.ok(page);
     }
 
 

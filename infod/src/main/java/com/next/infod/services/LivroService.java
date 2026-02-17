@@ -44,8 +44,8 @@ public class LivroService {
 
 
 
-    public ResponseEntity<List<Livro>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(repositorio.findAll());
+    public Page<Livro> findAll(Pageable pageable) {
+        return repositorio.findAll(pageable);
     }
 
 
